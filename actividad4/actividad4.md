@@ -1,15 +1,21 @@
 ### Instrucciones paso a paso
 
 1. **Descarga los scripts**:
-   - Descarga los siguientes scripts en tu sistema Linux:
+   - Crea los archivos:
      - [server.sh](#)
-     - [client.sh](#)
+     - [client.sh](#)  
+   - script para el server  
+
+   ![Server.sh](img/ejemplo.jpg)  
+   - script para el cliente
+   ![Cliente.sh](img/ejemplo2.jpg)
+
 
 2. **Abre una terminal**:
    - Abre una terminal o una pestaña de terminal en tu sistema Linux.
 
 3. **Permisos de ejecución**:
-   - Si es necesario, otorga permisos de ejecución a los scripts descargados. Puedes hacerlo con el comando `chmod +x script_name.sh`.
+   - Si es necesario, otorga permisos de ejecución a los scripts descargados. Puedes hacerlo con el comando `chmod +x server.sh` && `chmod +x cliente.sh`.
 
 4. **Ejecuta el servidor**:
    - En la terminal, navega hasta el directorio donde guardaste `server.sh`.
