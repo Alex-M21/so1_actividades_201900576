@@ -14,8 +14,10 @@ int main() {
     pid = fork();
     if (pid == 0) {
         /* child process */
+        printf("This is the child process 0\n");
         pthread_create(&tid, NULL, thread_function, NULL);
     }
+    printf("This is the child process\n");
 
     fork(); // This will create another child process
 
