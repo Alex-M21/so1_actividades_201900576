@@ -1,40 +1,41 @@
-## Actividad 5 Pthread
+# Universidad de San Carlos de Guatemala
+## Facultad de Ingeniería
+### Escuela de ciencias y sistemas
 
-Codigo inicial 
+---
 
-![Codigo inicial](capturas/cap0.png)
+## Sistemas Operativos 1
+### Actividad 7 - Completely Fair Scheduler
 
-Codigo ya corregido
+---
 
-![Codigo corregido](capturas/cap1.png)
+**Estudiante:** Brayan Alexander Mejia Barrientos  
+**Número de estudiante:** 201900576  
+**Fecha:** 03/04/2024  
 
-- pthread.h: Esta biblioteca proporciona las funciones y estructuras necesarias para trabajar con hilos en el - sistema.
+---
 
-- stdio.h: Biblioteca estándar de entrada y salida en C.
+El Completely Fair Scheduler (CFS) es un algoritmo de planificación de procesos eficiente y flexible que se utiliza ampliamente en sistemas Linux por su capacidad para distribuir equitativamente el tiempo de CPU y evitar la inanición de procesos.
 
-- unistd.h: Biblioteca que proporciona acceso a las funciones del sistema operativo relacionadas con la creación de procesos (fork()).  
+### Funcionamiento:
 
-- función thread_function es la rutina que se ejecutará cuando se cree un hilo. Simplemente imprime un mensaje en la consola y devuelve NULL.
+Los procesos se ordenan en un árbol rojo-negro por tiempo de ejecución virtual. El proceso con menor tiempo de ejecución virtual se ejecuta durante un "slice". Se recalcula el tiempo de ejecución virtual del proceso y se reinserta en el árbol. Se selecciona el siguiente proceso con menor tiempo de ejecución virtual para ejecutarse.
 
-- pid_t pid: Declaración de una variable para almacenar el ID del proceso.
-pthread_t tid: Declaración de una variable para almacenar el ID del hilo.
+### Características:
 
-- pid = fork(): Se crea un proceso hijo utilizando la función fork(). El valor devuelto (pid) indica si estamos en el proceso hijo o en el proceso padre.
+- **Equidad:** Distribuye el tiempo de CPU equitativamente entre los procesos.
+- **Prioridad dinámica:** Asigna prioridades a los procesos que cambian según el uso de CPU.
+- **Tiempo de ejecución justo:** Garantiza que cada proceso reciba su "cuota" de tiempo de CPU.
+- **Sin inanición:** Evita que los procesos se queden sin tiempo de CPU indefinidamente.
 
-- if (pid == 0) { ... }: Si el valor de pid es 0, estamos en el proceso hijo, por lo que se ejecuta el código dentro de este bloque.
+### Beneficios:
 
-pthread_create(&tid, NULL, thread_function, NULL);: Se crea un nuevo hilo utilizando la función pthread_create(). Este hilo ejecutará la función thread_function.
+- **Equidad en la distribución del tiempo de CPU.**
+- **Eficiencia en el uso de la CPU.**
+- **Prevención de la inanición de procesos.**
+- **Algoritmo flexible y adaptable.**
 
-- fork();: Se realiza otra bifurcación, lo que resulta en la creación de otro proceso hijo.
+### Limitaciones:
 
-### Ejeuccion del codigo corregido
-![Codigo corregido ejecutado](capturas/cap2.png)
-### Respuestas a las preguntas:
-
-a) **¿Cuántos procesos únicos son creados?**
-
-El programa realiza dos bifurcaciones (fork()) desde el proceso principal. Cada bifurcación crea un nuevo proceso hijo. se crearán 4 procesos únicos. Uno será el proceso principal y los otros tres serán los procesos hijos resultantes de las bifurcaciones.
-
-b) **¿Cuántos hilos únicos son creados?**
-
-Cada vez que se llama a pthread_create() dentro de un proceso hijo (después de la bifurcación), se crea un nuevo hilo. En este caso, pthread_create() se llama dentro de un proceso hijo después de la primera bifurcación. Por tanto se creará un hilo único en uno de los procesos hijos. 
+- **Puede ser susceptible a procesos que acaparan la CPU.**
+- **La complejidad del algoritmo puede afectar el rendimiento en algunos casos.**
